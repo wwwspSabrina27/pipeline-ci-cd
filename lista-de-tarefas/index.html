@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Lista de Tarefas</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="titulo">Lista de Tarefas</h1>
+        <div class="tarefas">
+            <label for="tarefas" id="label-tarefa">Nova Tarefa</label>
+            <input type="text" name="tarefas" id="nome-tarefa" required>
+            <button type="submit" id="btn-tarefa">Adicionar tarefa</button>
+        </div>
+        <div class="tabela">
+                <table id="tabela-tarefa">
+                    <thead>
+                        <tr>
+                            <th>Tarefa</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpo-tabela"></tbody>
+                </table>
+            </div>
+    </div>
+
+    <script src="./js/script.js"></script>
+</body>
+</html>
+
+

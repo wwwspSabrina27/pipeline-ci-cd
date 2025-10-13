@@ -1,0 +1,58 @@
+# Nome da sua pipeline, visível na aba "Actions" do GitHub
+name: CI/CD Pipeline - Testes Node.js
+
+# ------------------------------------
+# 1. Gatilhos (Quando rodar a pipeline)
+# ------------------------------------
+on:
+  # Roda a pipeline sempre que um código é enviado para a branch 'main'
+  push:
+    branches: [ "main" ]
+  # Roda a pipeline sempre que um Pull Request é aberto/atualizado na branch 'main'
+  pull_request:
+    branches: [ "main" ]
+
+# ------------------------------------
+# 2. Jobs (Tarefas a serem executadas)
+# ------------------------------------
+jobs:
+  # Define o primeiro e único job: 'build_and_test'
+  build_and_test:
+    # O ambiente onde este job será executado (usamos um Ubuntu atualizado)
+    runs-on: ubuntu-latest
+
+    # Os passos (steps) que o job irá seguir
+    steps:
+      # Passo 1: Faz o checkout do código do seu repositório
+      - name: Checkout do Código
+        uses: actions/checkout@v4
+        
+      # Passo 2: Configura o ambiente Node.js
+      - name: Configurar Node.js
+        # Ação oficial do GitHub para configurar o Node.js.
+        # Estamos usando a versão 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm' # Habilita o cache para a pasta node_modules (acelera a instalação)
+
+      # Passo 3: Instala as dependências do projeto
+      - name: Instalar Dependências
+        run: npm ci # 'npm ci' é mais rápido e confiável em ambientes CI do que 'npm install'
+
+      # Passo 4: Roda os testes (Jest)
+      - name: Rodar Testes Unitários
+        # Este comando pressupõe que seu 'package.json' tem um script de teste configurado
+        run: npm test
+        
+      # ------------------------------------
+      # Passo Opcional: CD (Deploy)
+      # ------------------------------------
+      # Você pode adicionar passos aqui para fazer o DEPLOY
+      # em serviços como Vercel, Netlify ou AWS, mas isso
+      # geralmente só é feito APÓS os testes passarem na branch 'main'.
+      # Exemplo (apenas para fins ilustrativos):
+      #
+      # - name: Fazer Deploy (se testes passarem)
+      #   if: success() && github.ref == 'refs/heads/main'
+      #   run: npm run deploy-production

@@ -1,8 +1,12 @@
 {
-    "scripts": {
-      "test": "jest"
-    },
-    "devDependencies": {
-      "jest": "^30.2.0"
-    }
+  "scripts": {
+    "test": "jest",
+    "cypress:open": "cypress open",
+    "test:coverage": "jest --coverage"
+  },
+  "devDependencies": {
+    "@cypress/code-coverage": "^3.14.7",
+    "cypress": "^15.4.0",
+    "jest": "^30.2.0"
   }
+}
