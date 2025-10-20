@@ -10,6 +10,6 @@ test('soma corretamente um número positivo e um zero', () => {
   expect(somar(5, 0)).toBe(5);
 });
 
-/*test('soma corretamente um número positivo e um número negativo', () => {
+test('soma corretamente um número positivo e um número negativo', () => {
   expect(somar(10, -5)).toBe(5);
-});*/
+});
