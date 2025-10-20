@@ -3,7 +3,7 @@ const somar = require('./Calculadora.js');
 
 // A função test define um caso de teste individual
 test('Soma corretamente dois numeros positivos', () => {
-    expect(somar(2, 3)).toBe(7);
+    expect(somar(2, 3)).toBe(5);
 });
 
 test('soma corretamente um número positivo e um zero', () => {
